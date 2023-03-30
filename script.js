@@ -30,6 +30,8 @@ buttonCheck.addEventListener('click', () => {
     document.querySelector('body').style.backgroundColor = '#60b347';
     winnerDisplay.textContent = generatedNumber;
     winnerDisplay.style.width = '30rem';
+
+    // High Score logic
     if (score > highScore) {
       highScore = score;
       displayHighScore.textContent = highScore;
