@@ -11,8 +11,14 @@ const displayHighScore = document.querySelector('.highscore');
 const randomNumber = function () {
   return Math.floor(Math.random() * 20) + 1;
 };
-let generatedNumber = randomNumber();
 
+// DisplayMessage function
+const displayMessage = function (message) {
+  messageFeedback.textContent = message;
+};
+
+// Vars
+let generatedNumber = randomNumber();
 let score = 20;
 let highScore = 0;
 
@@ -24,11 +30,11 @@ buttonCheck.addEventListener('click', () => {
 
   // IF there is no value
   if (!userInputedValue) {
-    messageFeedback.textContent = '⛔️ Enter a number';
-
+    displayMessage('⛔️ Enter a number');
     // When Guess is Right
   } else if (userInputedValue === generatedNumber) {
-    messageFeedback.textContent = 'Congratulations! 🎉🎉';
+    displayMessage('Congratulations! 🎉🎉');
+
     document.querySelector('body').style.backgroundColor = '#60b347';
     winnerDisplay.textContent = generatedNumber;
     winnerDisplay.style.width = '30rem';
@@ -42,13 +48,14 @@ buttonCheck.addEventListener('click', () => {
     // When Guess is Wrong
   } else if (userInputedValue !== generatedNumber) {
     if (score > 1) {
-      messageFeedback.textContent =
-        userInputedValue > generatedNumber ? '📈 Too high' : '📉 Too low';
+      displayMessage(
+        userInputedValue > generatedNumber ? '📈 Too high' : '📉 Too low'
+      );
       score--;
       scoreDisplay.textContent = score;
     } else {
       scoreDisplay.textContent = 0;
-      messageFeedback.textContent = 'You lose the game 😕';
+      displayMessage('You lose the game 😕');
     }
   }
 });
@@ -57,7 +64,8 @@ buttonCheck.addEventListener('click', () => {
 playAgainButton.addEventListener('click', () => {
   generatedNumber = randomNumber();
   document.querySelector('body').style.backgroundColor = '#222';
-  messageFeedback.textContent = 'Start guessing...';
+
+  displayMessage('Start guessing...');
   winnerDisplay.textContent = '?';
   winnerDisplay.style.width = '15rem';
   document.querySelector('.guess').value = '';
