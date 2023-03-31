@@ -1,5 +1,5 @@
 'use strict';
-// Selection all elements
+// Selection elements
 const messageFeedback = document.querySelector('.message');
 const buttonCheck = document.querySelector('.check');
 const winnerDisplay = document.querySelector('.number');
