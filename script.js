@@ -25,6 +25,8 @@ buttonCheck.addEventListener('click', () => {
   // IF there is no value
   if (!userInputedValue) {
     messageFeedback.textContent = '⛔️ Enter a number';
+
+    // When Guess is Right
   } else if (userInputedValue === generatedNumber) {
     messageFeedback.textContent = 'Congratulations! 🎉🎉';
     document.querySelector('body').style.backgroundColor = '#60b347';
@@ -36,18 +38,12 @@ buttonCheck.addEventListener('click', () => {
       highScore = score;
       displayHighScore.textContent = highScore;
     }
-  } else if (userInputedValue > generatedNumber) {
+
+    // When Guess is Wrong
+  } else if (userInputedValue !== generatedNumber) {
     if (score > 1) {
-      messageFeedback.textContent = '📈 Too high';
-      score--;
-      scoreDisplay.textContent = score;
-    } else {
-      scoreDisplay.textContent = 0;
-      messageFeedback.textContent = 'You lose the game 😕';
-    }
-  } else if (userInputedValue < generatedNumber) {
-    if (score > 1) {
-      messageFeedback.textContent = '📉 Too low';
+      messageFeedback.textContent =
+        userInputedValue > generatedNumber ? '📈 Too high' : '📉 Too low';
       score--;
       scoreDisplay.textContent = score;
     } else {
